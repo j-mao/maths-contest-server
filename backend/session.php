@@ -33,7 +33,7 @@ function require_login() {
 function require_not_login() {
 	global $logged_in;
 	if ($logged_in) {
-		header("location: /static/overview.php");
+		header("location: /contest/overview.php");
 	}
 }
 

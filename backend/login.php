@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
 				if (mysqli_num_rows($result) == 1) {
 					$_SESSION["user_id"] = $result["user_id"];
 					$_SESSION["username"] = $result["username"];
-					header("location: /static/overview.php");
+					header("location: /contest/overview.php");
 				} else {
 					$error = "Failed to log in.";
 				}
