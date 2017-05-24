@@ -17,11 +17,13 @@ if (isset($_POST["submit"])) {
 		} else {
 			$username = mysqli_real_escape_string($conn, stripslashes($_POST["username"]));
 			$password = mysqli_real_escape_string($conn, stripslashes($_POST["password"]));
-			$sql = "SELECT * FROM accounts WHERE username='$username' AND password='$password';";
+			$sql = "SELECT user_id, username, nickname FROM accounts WHERE username='$username' AND password='$password';";
 			if ($result = mysqli_query($conn, $sql)) {
 				if (mysqli_num_rows($result) == 1) {
-					$_SESSION["user_id"] = $result["user_id"];
-					$_SESSION["username"] = $result["username"];
+					$row = mysqli_fetch_assoc($result);
+					$_SESSION["user_id"] = intval($row["user_id"]);
+					$_SESSION["username"] = mysqli_real_escape_string($conn, stripslashes($row["username"]));
+					$_SESSION["nickname"] = mysqli_real_escape_string($conn, stripslashes($row["nickname"]));
 					header("location: /contest/overview.php");
 				} else {
 					$error = "Failed to log in.";

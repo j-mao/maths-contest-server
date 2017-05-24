@@ -1,10 +1,5 @@
 <?php
 
-function get_problem_data($problem_name, $problem_aspect) {
-	// TODO
-	;
-}
-
 function get_conn() {
 	$sql_servername = "localhost";
 	$sql_username = "contest-manager";

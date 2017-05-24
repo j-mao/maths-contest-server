@@ -7,7 +7,7 @@ function has_access($user_id, $task_id) {
 	$has = false;
 	if (is_null($conn)) {
 	} else {
-		$sql = "SELECT * FROM opens WHERE user_id=$user_id AND task_id=$task_id;";
+		$sql = "SELECT open_id FROM opens WHERE user_id=$user_id AND task_id=$task_id;";
 		if ($result = mysqli_query($conn, $sql)) {
 			if (mysqli_num_rows($result) == 1) {
 				$has = true;
@@ -37,6 +37,7 @@ function submit_answer($user_id, $task_id, $answer, $verdict) {
 		$conn = get_conn();
 		if (is_null($conn)) {
 		} else {
+			$answer = mysqli_real_escape_string($conn, stripslashes($answer));
 			$sql = "INSERT INTO submissions (user_id, task_id, answer, verdict) VALUES ($user_id, $task_id, '$answer', $verdict);";
 			mysqli_query($conn, $sql);
 			$conn->close();
