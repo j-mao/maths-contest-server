@@ -2,7 +2,7 @@
 <!-- Begin generated information bar -->
 <?php
 
-require "../../backend/conn.php";
+require __DIR__."/../../backend/conn.php";
 
 $conn = get_conn();
 $contest_title = "";
@@ -24,19 +24,17 @@ if (is_null($conn)) {
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<span class="navbar-brand">
+			<a class="navbar-brand" href="/contest/">
 				<?php echo $contest_title; ?>
-			</span>
+			</a>
 		</div>
 <?php if ($logged_in) { ?>
-		<ul class="nav navbar-nav navbar-right">
-			<li class="navbar-text">
-				Logged in as <b><?php echo $_SESSION["nickname"]; ?></b> (<?php echo $_SESSION["username"]; ?>)
-			</li>
-			<li>
-				<button class="btn btn-warning btn-sm navbar-btn" onclick="window.location='/contest/logout.php';">Logout</button>
-			</li>
-		</ul>
+		<form action="#" method="POST" class="navbar-form pull-right">
+			<button type="submit" class="btn btn-warning">Logout</button>
+		</form>
+		<p class="navbar-text pull-right">
+			Logged in as <b><?php echo $_SESSION["nickname"]; ?></b> (<?php echo $_SESSION["username"]; ?>)
+		</p>
 <?php } ?>
 
 	</div>

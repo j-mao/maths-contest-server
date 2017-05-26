@@ -1,6 +1,6 @@
 <?php
 
-require "conn.php";
+require __DIR__."/conn.php";
 
 function get_problem_data($directory, $aspect) {
 	$file = fopen($directory, "r") or return "Error";
@@ -61,6 +61,7 @@ function get_task($task_id) {
 	return $task_data;
 }
 
+// WARNING: unused function
 function get_all_tasks() {
 	$task_data = [];
 	$conn = get_conn();

@@ -3,13 +3,16 @@
 require __DIR__."/../backend/session.php";
 require_login();
 
+require __DIR__."/../backend/make_dashboard.php";
+
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Contest overview</title>
+		<title>Contest dashboard</title>
 		<?php require __DIR__."/include/header.php"; ?>
+		<script src="js/access.js"></script>
 	</head>
 	<body>
 
@@ -21,9 +24,11 @@ require_login();
 
 				<div class="col-sm-8">
 					<div class="page-header">
-						<h1>Overview</h1>
+						<h1>Dashboard</h1>
 					</div>
-					Insert welcome message here.
+
+					<?php make_dashboard($_SESSION["user_id"]); ?>
+
 				</div>
 
 				<?php require __DIR__."/include/alerts.php"; ?>

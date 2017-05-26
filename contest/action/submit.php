@@ -1,9 +1,9 @@
 <?php
 
-require '../../backend/session.php';
-require '../../backend/client_action.php';
-
+require __DIR__."/../../backend/session.php";
 require_login();
+
+require __DIR__."/../../backend/client_action.php";
 
 function remove_spaces($str) {
 	return preg_replace('/\s/', '', $str);
@@ -18,9 +18,9 @@ $alert_subject = "";
 $alert_body = "";
 $alert_class = "";
 
-if ($logged_in && $_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$task_id = $_POST["task_id"];
-	if (in_contest($problem_id)) {
+	if (in_contest($task_id)) {
 		$submitted_answer = $_POST["answer"];
 		if (is_numeric($submitted_answer)) {
 			$expected_answer = get_problem_data();
@@ -29,16 +29,16 @@ if ($logged_in && $_SERVER['REQUEST_METHOD'] === 'POST') {
 			if ($verdict) {
 				$alert_subject = "Submission received";
 				$alert_body = "Your answer has been received, and has been marked as correct.";
-				$alert_class = "green";
+				$alert_class = "success";
 			} else {
 				$alert_subject = "Submission received";
 				$alert_body = "Your answer has been received, and has been marked as incorrect.";
-				$alert_class = "red";
+				$alert_class = "danger";
 			}
 		} else {
 			$alert_subject = "Submission rejected";
 			$alert_body = "Your submission was rejected because it was not a valid number.";
-			$alert_class = "red";
+			$alert_class = "danger";
 		}
 		$has_alert = true;
 	}

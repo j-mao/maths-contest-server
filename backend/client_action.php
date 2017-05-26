@@ -1,6 +1,6 @@
 <?php
 
-require 'conn.php';
+require __DIR__."/conn.php";
 
 function has_access($user_id, $task_id) {
 	$conn = get_conn();
@@ -42,6 +42,18 @@ function submit_answer($user_id, $task_id, $answer, $verdict) {
 			mysqli_query($conn, $sql);
 			$conn->close();
 		}
+	}
+}
+
+function send_question($user_id, $subject, $body) {
+	$conn = get_conn();
+	if (is_null($conn)) {
+	} else {
+		$subject = mysqli_real_escape_string($conn, stripslashes($subject));
+		$body = mysqli_real_escape_string($conn, stripslashes($body));
+		$sql = "INSERT INTO questions (user_id, q_subject, q_body) VALUES ($user_id, '$subject', '$body');";
+		mysqli_query($conn, $sql);
+		$conn->close();
 	}
 }
 

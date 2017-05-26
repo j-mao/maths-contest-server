@@ -1,6 +1,6 @@
 <?php
 
-require 'conn.php';
+require __DIR__."/conn.php";
 
 session_start();
 $logged_in = false;

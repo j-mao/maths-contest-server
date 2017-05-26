@@ -1,19 +1,23 @@
 <?php
 
-require 'conn.php';
+require __DIR__."/../../backend/conn.php";
 
 session_start();
-$error = "";
+
+$has_alert = false;
+$alert_subject = "";
+$alert_body = "";
+$alert_class = "";
 
 if (isset($_POST["submit"])) {
 	if (empty($_POST["username"])) {
-		$error = "Failed to log in.";
+		$has_alert = true;
 	} else if (empty($_POST["password"])) {
-		$error = "Failed to log in.";
+		$has_alert = true;
 	} else {
 		$conn = get_conn();
 		if (is_null($conn)) {
-			$error = "Failed to log in.";
+			$has_alert = true;
 		} else {
 			$username = mysqli_real_escape_string($conn, stripslashes($_POST["username"]));
 			$password = mysqli_real_escape_string($conn, stripslashes($_POST["password"]));
@@ -26,15 +30,20 @@ if (isset($_POST["submit"])) {
 					$_SESSION["nickname"] = mysqli_real_escape_string($conn, stripslashes($row["nickname"]));
 					header("location: /contest/overview.php");
 				} else {
-					$error = "Failed to log in.";
+					$has_alert = true;
 				}
 				mysqli_free_result($result);
 			} else {
-				$error = "Failed to log in.";
+				$has_alert = true;
 			}
 			$conn->close();
 		}
 	}
+}
+
+if ($has_alert) {
+	$alert_subject = "Failed to log in.";
+	$alert_class = "danger";
 }
 
 ?>
