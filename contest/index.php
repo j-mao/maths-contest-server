@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__."/../backend/session.php";
+require_once __DIR__."/../backend/session.php";
 require_not_login();
-require __DIR__."/action/login.php";
+require_once __DIR__."/action/login.php";
 
 ?>
 

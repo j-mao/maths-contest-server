@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__."/conn.php";
-require __DIR__."/timestamper.php";
+require_once __DIR__."/conn.php";
+require_once __DIR__."/timestamper.php";
 
 function get_submissions($user_id, $task_id) {
 	$conn = get_conn();

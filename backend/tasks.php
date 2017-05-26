@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__."/conn.php";
+require_once __DIR__."/conn.php";
 
 function get_problem_data($directory, $aspect) {
 	$file = fopen($directory, "r") or return "Error";

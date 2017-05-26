@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__."/../../backend/session.php";
+require_once __DIR__."/../../backend/session.php";
 require_login();
-require __DIR__."/../../backend/conn.php";
+require_once __DIR__."/../../backend/conn.php";
 
 $conn = get_conn();
 $num_messages = 0;

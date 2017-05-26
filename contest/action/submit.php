@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__."/../../backend/session.php";
+require_once __DIR__."/../../backend/session.php";
 require_login();
 
-require __DIR__."/../../backend/client_action.php";
+require_once __DIR__."/../../backend/client_action.php";
 
 function remove_spaces($str) {
 	return preg_replace('/\s/', '', $str);

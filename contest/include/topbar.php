@@ -2,7 +2,7 @@
 <!-- Begin generated information bar -->
 <?php
 
-require __DIR__."/../../backend/conn.php";
+require_once __DIR__."/../../backend/conn.php";
 
 $conn = get_conn();
 $contest_title = "";
@@ -29,7 +29,7 @@ if (is_null($conn)) {
 			</a>
 		</div>
 <?php if ($logged_in) { ?>
-		<form action="#" method="POST" class="navbar-form pull-right">
+		<form action="/contest/logout.php" method="GET" class="navbar-form pull-right">
 			<button type="submit" class="btn btn-warning">Logout</button>
 		</form>
 		<p class="navbar-text pull-right">

@@ -1,10 +1,10 @@
 <?php
 
-require __DIR__."/../backend/session.php";
+require_once __DIR__."/../backend/session.php";
 require_login();
-require __DIR__."/../backend/timestamper.php";
-require __DIR__."/action/question.php";
-require __DIR__."/../backend/get_communications.php";
+require_once __DIR__."/../backend/timestamper.php";
+require_once __DIR__."/action/question.php";
+require_once __DIR__."/../backend/get_communications.php";
 
 ?>
 

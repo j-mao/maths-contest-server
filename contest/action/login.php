@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__."/../../backend/conn.php";
+require_once __DIR__."/../../backend/conn.php";
 
 session_start();
 

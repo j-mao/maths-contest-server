@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__."/../backend/session.php";
+require_once __DIR__."/../backend/session.php";
 require_login();
 
-require __DIR__."/../backend/make_dashboard.php";
+require_once __DIR__."/../backend/make_dashboard.php";
 
 ?>
 

@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__."/../../backend/session.php";
+require_once __DIR__."/../../backend/session.php";
 require_login();
 
-require __DIR__."/../../backend/client_action.php";
+require_once __DIR__."/../../backend/client_action.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (!isset($_POST["task_id"])) {

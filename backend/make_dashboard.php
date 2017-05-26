@@ -1,7 +1,7 @@
 <?php
 
-require "conn.php";
-require "tasks.php";
+require_once "conn.php";
+require_once "tasks.php";
 
 function make_dashboard($user_id) {
 	echo "\n<!-- Begin generated dashboard -->\n";

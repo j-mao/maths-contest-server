@@ -2,11 +2,11 @@
 <!-- Begin generated sidebar -->
 
 <div class="col-sm-3">
-	<div class="well" style="padding: 8px 0;">
+	<div class="well side-nav">
 		<ul class="nav nav-list">
-			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/" || $_SERVER["REQUEST_URI"] == "/index.php") echo 'class="list-group-item active"'; ?>>Overview</a></li>
-			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/communication.php") echo 'class="list-group-item active"'; ?>>Communication <span class="label label-warning" id="num_unread"></span></a></li>
-			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/dashboard.php") echo 'class="list-group-item active"'; ?>>Dashboard</a></li>
+			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/" || $_SERVER["REQUEST_URI"] == "/index.php") echo 'class="active"'; ?>>Overview</a></li>
+			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/communication.php") echo 'class="active"'; ?>>Communication <span class="label label-warning" id="num_unread"></span></a></li>
+			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/dashboard.php") echo 'class="active"'; ?>>Dashboard</a></li>
 		</ul>
 	</div>
 	<div class="panel panel-primary">

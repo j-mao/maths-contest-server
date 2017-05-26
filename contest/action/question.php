@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__."/../../backend/session.php";
+require_once __DIR__."/../../backend/session.php";
 require_login();
 
 $has_alert = false;

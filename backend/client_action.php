@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__."/conn.php";
+require_once __DIR__."/conn.php";
 
 function has_access($user_id, $task_id) {
 	$conn = get_conn();
