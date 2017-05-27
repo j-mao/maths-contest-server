@@ -2,7 +2,7 @@
 
 require_once __DIR__."/conn.php";
 
-session_start();
+if (session_id() === "") session_start();
 $logged_in = false;
 
 if (isset($_SESSION["user_id"]) && isset($_SESSION["username"]) && isset($_SESSION["nickname"])) {
@@ -26,7 +26,7 @@ if (isset($_SESSION["user_id"]) && isset($_SESSION["username"]) && isset($_SESSI
 function require_login() {
 	global $logged_in;
 	if (!$logged_in) {
-		header("location: /");
+		header("location: /contest/");
 	}
 }
 
@@ -34,6 +34,18 @@ function require_not_login() {
 	global $logged_in;
 	if ($logged_in) {
 		header("location: /contest/overview.php");
+	}
+}
+
+function require_admin() {
+	if (!isset($_SESSION["admin"]) || !$_SESSION["admin"]) {
+		header("location: /admin/");
+	}
+}
+
+function require_not_admin() {
+	if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
+		header("location: /admin/general.php");
 	}
 }
 

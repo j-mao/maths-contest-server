@@ -1,8 +1,12 @@
 <?php
 
 require_once __DIR__."/../../backend/conn.php";
+require_once __DIR__."/../../backend/session.php";
 
-session_start();
+require_not_login();
+require_not_admin();
+
+if (session_id() === "") session_start();
 
 $has_alert = false;
 $alert_subject = "";
@@ -28,6 +32,7 @@ if (isset($_POST["submit"])) {
 					$_SESSION["user_id"] = intval($row["user_id"]);
 					$_SESSION["username"] = mysqli_real_escape_string($conn, stripslashes($row["username"]));
 					$_SESSION["nickname"] = mysqli_real_escape_string($conn, stripslashes($row["nickname"]));
+					$_SESSION["admin"] = false;
 					header("location: /contest/overview.php");
 				} else {
 					$has_alert = true;

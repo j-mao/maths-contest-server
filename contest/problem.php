@@ -2,6 +2,7 @@
 
 require_once __DIR__."/../backend/session.php";
 require_login();
+require_not_admin();
 
 if (!isset($_GET["task_id"])) {
 	http_response_code(404);

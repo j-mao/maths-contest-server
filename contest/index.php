@@ -2,6 +2,7 @@
 
 require_once __DIR__."/../backend/session.php";
 require_not_login();
+require_not_admin();
 require_once __DIR__."/action/login.php";
 
 ?>
