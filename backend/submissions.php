@@ -8,7 +8,7 @@ function get_submissions($user_id, $task_id) {
 	$submissions = [];
 	if (is_null($conn)) {
 	} else {
-		$sql = "SELECT submit_time, answer, verdict FROM submissions WHERE user_id=$user_id AND task_id=$task_id";
+		$sql = "SELECT submit_time, answer, verdict FROM submissions WHERE user_id=$user_id AND task_id=$task_id;";
 		if ($result = mysqli_query($conn, $sql)) {
 			while ($row = mysqli_fetch_assoc($result)) {
 				$submissions[] = $row;
