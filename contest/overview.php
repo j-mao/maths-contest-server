@@ -20,9 +20,9 @@ require_not_admin();
 			<div class="row">
 				<?php require __DIR__."/include/sidebar.php"; ?>
 
-				<div class="col-sm-8">
+				<div class="col-sm-6">
 					<div class="page-header">
-						<h1>Overview</h1>
+						<h2>Overview</h2>
 					</div>
 					Insert welcome message here.
 				</div>

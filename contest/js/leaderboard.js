@@ -31,8 +31,8 @@ function makeLeaderboard() {
 	document.getElementById("leaderboard").innerHTML = str;
 }
 
-window.onload = function() {
+$(document).ready(function() {
 	makeLeaderboard();
 	leaderboard_poll = window.setInterval(makeLeaderboard, INTERVAL_MILLIS);
-}
+});
 

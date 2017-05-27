@@ -23,16 +23,16 @@ require_once __DIR__."/../backend/get_communications.php";
 			<div class="row">
 				<?php require __DIR__."/include/sidebar.php"; ?>
 
-				<div class="col-sm-8">
+				<div class="col-sm-6">
 					<div class="page-header">
-						<h1>Communication</h1>
+						<h2>Communication</h2>
 					</div>
 
 					<?php
 					echo "\n";
 					$num_announcements = count($announcements);
 					if ($num_announcements > 0) {
-						echo "<h2>Announcements</h2>\n";
+						echo "<h3>Announcements</h3>\n";
 						for ($i = 0;$i < $num_announcements;$i++) {
 							echo "\n<div class=\"alert alert-info\">";
 							echo "\n<div class=\"pull-right\">" . time_format($announcements[$i]["send_time"]) . "</div>";
@@ -48,7 +48,7 @@ require_once __DIR__."/../backend/get_communications.php";
 					echo "\n";
 					?>
 
-					<h2>Questions</h2>
+					<h3>Questions</h3>
 					<div class="well">
 						<form action="?" method="POST" class="form-horizontal">
 							<div class="form-group">
@@ -105,7 +105,7 @@ require_once __DIR__."/../backend/get_communications.php";
 					echo "\n";
 					$num_messages = count($messages);
 					if ($num_messages > 0) {
-						echo "<h2>Messages</h2>\n";
+						echo "<h3>Messages</h3>\n";
 						for ($i = 0;$i < $num_messages;$i++) {
 							echo "\n<div class=\"alert alert-info\">";
 							echo "\n<div class=\"pull-right\">" . time_format($messages[$i]["send_time"]) . "</div>";

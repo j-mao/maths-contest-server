@@ -1,12 +1,12 @@
 
 <!-- Begin generated sidebar -->
 
-<div class="col-sm-3">
+<div class="col-sm-3 col-sm-offset-1">
 	<div class="well side-nav">
 		<ul class="nav nav-list">
-			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/" || $_SERVER["REQUEST_URI"] == "/index.php") echo 'class="active"'; ?>>Overview</a></li>
-			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/communication.php") echo 'class="active"'; ?>>Communication <span class="label label-warning" id="num_unread"></span></a></li>
-			<li><a href="#" <?php if ($_SERVER["REQUEST_URI"] == "/dashboard.php") echo 'class="active"'; ?>>Dashboard</a></li>
+			<li><a href="/contest/overview.php" <?php if ($_SERVER["REQUEST_URI"] == "/contest/overview.php") echo 'class="active"'; ?>>Overview</a></li>
+			<li><a href="/contest/communication.php" <?php if ($_SERVER["REQUEST_URI"] == "/contest/communication.php") echo 'class="active"'; ?>>Communication <span class="label label-warning" id="num_unread"></span></a></li>
+			<li><a href="/contest/dashboard.php" <?php if ($_SERVER["REQUEST_URI"] == "/contest/dashboard.php") echo 'class="active"'; ?>>Dashboard</a></li>
 		</ul>
 	</div>
 	<div class="panel panel-primary">

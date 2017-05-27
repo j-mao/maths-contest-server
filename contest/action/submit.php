@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (in_contest($task_id)) {
 		$submitted_answer = $_POST["answer"];
 		if (is_numeric($submitted_answer)) {
-			$expected_answer = get_problem_data();
+			// my_data should be defined because the only page that calls this file is /contest/problem.php
+			$expected_answer = get_problem_data($my_data["directory"], "answer");
 			$verdict = check_answer($submitted_answer, $expected_answer);
 			submit_answer($_SESSION["user_id"], $task_id, $submitted_answer, $verdict);
 			if ($verdict) {

@@ -33,6 +33,7 @@ function request_access($user_id, $task_id) {
 }
 
 function submit_answer($user_id, $task_id, $answer, $verdict) {
+	$verdict = intval($verdict);
 	if (has_access($user_id, $task_id)) {
 		$conn = get_conn();
 		if (is_null($conn)) {

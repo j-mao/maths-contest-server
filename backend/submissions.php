@@ -8,10 +8,10 @@ function get_submissions($user_id, $task_id) {
 	$submissions = [];
 	if (is_null($conn)) {
 	} else {
-		$sql = "SELECT submit_time, answer, verdict FROM submissions WHERE ";
+		$sql = "SELECT submit_time, answer, verdict FROM submissions WHERE user_id=$user_id AND task_id=$task_id";
 		if ($result = mysqli_query($conn, $sql)) {
 			while ($row = mysqli_fetch_assoc($result)) {
-				$submissions[] = clone $row;
+				$submissions[] = $row;
 			}
 			mysqli_free_result($result);
 		} else {
@@ -34,16 +34,16 @@ function make_submission_table($user_id, $task_id) {
 	echo "</thead>\n";
 	echo "<tbody>\n";
 	$num_submissions = count($submissions);
-	for ($i = 0;$i < $num_submissions;$i++) {
+	for ($i = $num_submissions - 1;$i >= 0;$i--) {
 		echo "<tr>\n";
-		echo "<td>" . time_format($num_submissions[$i]["submit_time"]) . "</td>\n";
+		echo "<td>" . time_format($submissions[$i]["submit_time"]) . "</td>\n";
 		echo "<td>" . htmlspecialchars($submissions[$i]["answer"]) . "</td>\n";
 		if ($submissions[$i]["verdict"] == 1) {
-			echo "<td class=\"success\">" . Correct . "</td>\n";
+			echo "<td class=\"success\">Correct</td>\n";
 		} else if ($submissions[$i]["verdict"] == 0) {
-			echo "<td class=\"danger\">" . Incorrect . "</td>\n";
+			echo "<td class=\"danger\">Incorrect</td>\n";
 		} else if ($submissions[$i]["verdict"] == -1) {
-			echo "<td>" . Ignored . "</td>\n";
+			echo "<td>Ignored</td>\n";
 		}
 		echo "</tr>\n";
 	}

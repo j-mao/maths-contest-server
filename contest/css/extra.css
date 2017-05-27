@@ -15,3 +15,7 @@ div.side-nav ul.nav-list li a.active {
 	background: #337ab7;
 	color: #ffffff;
 }
+
+textarea {
+	resize: vertical;
+}

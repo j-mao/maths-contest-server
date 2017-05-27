@@ -23,9 +23,9 @@ require_once __DIR__."/../backend/make_dashboard.php";
 			<div class="row">
 				<?php require __DIR__."/include/sidebar.php"; ?>
 
-				<div class="col-sm-8">
+				<div class="col-sm-6">
 					<div class="page-header">
-						<h1>Dashboard</h1>
+						<h2>Dashboard</h2>
 					</div>
 
 					<?php make_dashboard($_SESSION["user_id"]); ?>

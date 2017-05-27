@@ -10,8 +10,9 @@ if (is_null($conn)) {
 } else {
 	$sql = "SELECT data_varchar FROM contest WHERE variable='contest_name';";
 	if ($result = mysqli_query($conn, $sql) {
-		if (mysqli_num_rows($result) == 1) {
-			$contest_title = $result["data_varchar"];
+		if (mysqli_num_rows($result) == 1)) {
+			$row = mysqli_fetch_assoc($result);
+			$contest_title = $row["data_varchar"];
 		}
 		mysqli_free_result($result);
 	} else {

@@ -14,9 +14,9 @@ function make_dashboard($user_id) {
 
 	if (is_null($conn)) {
 	} else {
-		$sql = "SELECT task_id, directory FROM tasks;";
+		$sql = "SELECT tasks.task_id, problems.directory FROM tasks RIGHT JOIN problems ON tasks.problem_id=problems.problem_id;";
 		if ($result = mysqli_query($conn, $sql)) {
-			while ($row = mysqli_fetch_assoc($result) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				$tasks[] = $row["task_id"];
 				$dirs[] = $row["directory"];
 			}
@@ -73,12 +73,14 @@ function make_dashboard($user_id) {
 			echo "<a class=\"list-group-item list-group-item-info\" href=\"/contest/problem.php?task_id=" . $tasks[$i] . "\">";
 			echo get_problem_data($dirs[$i], "full_title");
 		} else {
-			echo "<a class=\"list-group-item\" href=\"?\" onclick=\"request_access(" . $tasks[$i] . ");\">";
+			echo "<a class=\"list-group-item\" href=\"#\" onclick=\"request_access(" . $tasks[$i] . ");\">";
 			echo get_problem_data($dirs[$i], "public_display");
 		}
 		echo "\n<span class=\"pull-right\">\n";
-		if ($solves[$i] > 0) {
-			echo "<span class=\"label label-default\">solved by " . $solves[$i] . "</span>\n";
+		if ($i < $solves_arr_len) {
+			if ($solves[$i] > 0) {
+				echo "<span class=\"label label-default\">solved by " . $solves[$i] . "</span>\n";
+			}
 		}
 		if (in_array($tasks[$i], $solved)) {
 			echo "<span class=\"label label-success\">solved</span>";

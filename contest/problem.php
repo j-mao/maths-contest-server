@@ -46,26 +46,28 @@ require_once __DIR__."/../backend/submissions.php";
 			<div class="row">
 				<?php require __DIR__."/include/sidebar.php"; ?>
 
-				<div class="col-sm-8">
+				<div class="col-sm-6">
 					<div class="page-header">
-						<h1><?php echo $my_data["full_title"]; ?></h1>
+						<h2><?php echo $my_data["full_title"]; ?></h2>
 					</div>
 					<p>
 						<?php echo $my_data["statement"]; ?>
 					</p>
+					<br />
 					<p>
-						<strong>Think you have the answer?</strong><br />
+						<strong>Think you have the answer?</strong>
 						Send it through here.
 					</p>
-					<form action="?" method="POST" class="form-inline">
+					<form action="?task_id=<?php echo $_GET["task_id"]; ?>" method="POST" class="form-inline">
 						<div class="form-group">
 							<input type="text" class="form-control" id="answer" name="answer" placeholder="Your answer" maxlength=32 />
 						</div>
+						<input type="hidden" name="task_id" value="<?php echo $_GET["task_id"]; ?>" />
 						<input type="submit" class="btn btn-success" value="Submit" />
 					</form>
 					<hr />
 					<p>
-						<h2>Previous submissions</h2>
+						<h3>Previous submissions</h3>
 						<?php make_submission_table($_SESSION["user_id"], $task_id); ?>
 					</p>
 				</div>

@@ -13,7 +13,7 @@ $alert_subject = "";
 $alert_body = "";
 $alert_class = "";
 
-if (isset($_POST["submit"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (empty($_POST["username"])) {
 		$has_alert = true;
 	} else if (empty($_POST["password"])) {

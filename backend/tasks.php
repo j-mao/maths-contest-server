@@ -3,8 +3,8 @@
 require_once __DIR__."/conn.php";
 
 function get_problem_data($directory, $aspect) {
-	$file = fopen($directory, "r") or return "Error";
-	$result = fread($file, filesize($directory));
+	$file = fopen($directory.$aspect, "r");
+	$result = fread($file, filesize($directory.$aspect));
 	fclose($file);
 	return $result;
 }
@@ -14,6 +14,7 @@ function get_task($task_id) {
 		"full_title" => "Error",
 		"short_title" => "Error",
 		"statement" => "Error",
+		"directory" => "Error",
 		"value" => 0,
 		"decrement" => 0,
 		"minscore" => 0,
@@ -37,24 +38,24 @@ function get_task($task_id) {
 		} else {
 		}
 
-		$directory = NULL;
+		$task_data["directory"] = NULL;
 		if (is_null($problem_id)) {
 		} else {
 			$sql = "SELECT directory FROM problems WHERE problem_id=$problem_id;";
 			if ($result = mysqli_query($conn, $sql)) {
 				$row = mysqli_fetch_assoc($result);
-				$directory = $row["directory"];
+				$task_data["directory"] = $row["directory"];
 			} else {
 			}
 			mysqli_free_result($result);
 		}
 		$conn->close();
 
-		if (is_null($directory)) {
+		if (is_null($task_data["directory"])) {
 		} else {
-			$task_data["full_title"] = get_problem_data($directory, "full_title");
-			$task_data["short_title"] = get_problem_data($directory, "short_title");
-			$task_data["statement"] = get_problem_data($directory, "statement");
+			$task_data["full_title"] = get_problem_data($task_data["directory"], "full_title");
+			$task_data["short_title"] = get_problem_data($task_data["directory"], "short_title");
+			$task_data["statement"] = get_problem_data($task_data["directory"], "statement");
 			$task_data["success"] = true;
 		}
 	}
@@ -68,7 +69,7 @@ function get_all_tasks() {
 	if (is_null($conn)) {
 	} else {
 		$task_ids = [];
-		$sql = "SELECT task_id FROM tasks";
+		$sql = "SELECT task_id FROM tasks;";
 		if ($result = mysqli_query($conn, $sql)) {
 			while ($row = mysqli_fetch_assoc($result)) {
 				$task_ids[] = $row["task_id"];
@@ -84,6 +85,24 @@ function get_all_tasks() {
 		}
 	}
 	return $task_data;
+}
+
+function in_contest($task_id) {
+	$conn = get_conn();
+	$task_exists = false;
+	if (is_null($conn)) {
+	} else {
+		$sql = "SELECT task_id FROM tasks WHERE task_id=$task_id;";
+		if ($result = mysqli_query($conn, $sql)) {
+			if (mysqli_num_rows($result) == 1) {
+				$task_exists = true;
+			}
+			mysqli_free_result($result);
+		} else {
+		}
+		$conn->close();
+	}
+	return $task_exists;
 }
 
 ?>

@@ -53,10 +53,10 @@ function getAlerts() {
 	}
 }
 
-window.onload = function() {
+$(document).ready(function() {
 	num_announcements = get_announcements();
 	num_questions = get_questions();
 	num_messages = get_messages();
 	alert_poll = window.setInterval(getAlerts, INTERVAL_MILLIS);
-}
+});
 

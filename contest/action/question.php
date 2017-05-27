@@ -4,6 +4,8 @@ require_once __DIR__."/../../backend/session.php";
 require_login();
 require_not_admin();
 
+require_once __DIR__."/../../backend/client_action.php";
+
 $has_alert = false;
 $alert_subject = "";
 $alert_body = "";
@@ -13,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$subject = trim($_POST["subject"]);
 	$body = trim($_POST["body"]);
 	if ($subject !== "" || $body !== "") {
-		send_question($subject, $body);
+		send_question($_SESSION["user_id"], $subject, $body);
 		$alert_subject = "Question received";
 		$alert_body = "Your question has been received, and will be answered as soon as possible. You will be notified once an answer is sent.";
 		$alert_class = "success";
