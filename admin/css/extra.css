@@ -1,0 +1,17 @@
+html, .contains-scroll {
+	height: 100%;
+}
+
+.scrollable {
+	overflow-y: scroll;
+}
+
+.opt {
+	padding-right: 20px;
+	margin-right: 10px;
+	padding-top: 10px;
+}
+
+.opt .opt {
+	border-right: 1px solid rgba(0, 0, 0, 0.3);
+}

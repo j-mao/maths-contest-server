@@ -67,27 +67,23 @@ function make_dashboard($user_id) {
 	echo "<div class=\"panel-heading\">Problems</div>\n";
 	for ($i = 0;$i < $num_tasks;$i++) {
 		if (in_array($tasks[$i], $solved)) {
-			echo "<a class=\"list-group-item list-group-item-success\" href=\"/contest/problem.php?task_id=" . $tasks[$i] . "\">";
+			echo "<a class=\"list-group-item\" href=\"/contest/problem.php?task_id=" . $tasks[$i] . "\">";
+			echo "<i class=\"glyphicon glyphicon-ok text-success\"></i>&nbsp;&nbsp;";
 			echo get_problem_data($dirs[$i], "full_title");
 		} else if (in_array($tasks[$i], $opens)) {
-			echo "<a class=\"list-group-item list-group-item-info\" href=\"/contest/problem.php?task_id=" . $tasks[$i] . "\">";
+			echo "<a class=\"list-group-item\" href=\"/contest/problem.php?task_id=" . $tasks[$i] . "\">";
+			echo "<i class=\"glyphicon glyphicon-time text-warning\"></i>&nbsp;&nbsp;";
 			echo get_problem_data($dirs[$i], "full_title");
 		} else {
 			echo "<a class=\"list-group-item\" href=\"#\" onclick=\"request_access(" . $tasks[$i] . ");\">";
+			echo "<i class=\"glyphicon glyphicon-envelope text-danger\"></i>&nbsp;&nbsp;";
 			echo get_problem_data($dirs[$i], "public_display");
 		}
-		echo "\n<span class=\"pull-right\">\n";
 		if ($i < $solves_arr_len) {
 			if ($solves[$i] > 0) {
-				echo "<span class=\"label label-default\">solved by " . $solves[$i] . "</span>\n";
+				echo "<span class=\"badge\">solved by " . $solves[$i] . "</span>\n";
 			}
 		}
-		if (in_array($tasks[$i], $solved)) {
-			echo "<span class=\"label label-success\">solved</span>";
-		} else if (in_array($tasks[$i], $opens)) {
-			echo "<span class=\"label label-info\">opened</span>";
-		}
-		echo "</span>\n";
 		echo "</a>\n";
 	}
 	echo "</div>\n";
