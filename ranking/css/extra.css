@@ -1,0 +1,51 @@
+td.tier0 {
+	background: #ffffff;
+}
+
+td.tier1 {
+	background: #e0f8e0;
+}
+
+td.tier2 {
+	background: #c0f1c0;
+}
+
+td.tier3 {
+	background: #a0eaa0;
+}
+
+td.tier4 {
+	background: #80e380;
+}
+
+td.tier5 {
+	background: #60dc60;
+}
+
+td.tier6 {
+	background: #40d440;
+}
+
+td.tier7 {
+	background: #20cd20;
+}
+
+td.tier8 {
+	background: #00c600;
+}
+
+td.changed {
+	background: #00c600;
+	-moz-animation: changedAnimation 3s ease 0s forwards;
+	-webkit-animation: changedAnimation 3s ease 0s forwards;
+	-o-animation: changedAnimation 3s ease 0s forwards;
+	animation: changedAnimation 3s ease 0s forwards;
+}
+
+@keyframes changedAnimation {
+	to { background: #ffffff; }
+}
+
+@-webkit-keyframes changedAnimation {
+	to { background: #ffffff; }
+}
