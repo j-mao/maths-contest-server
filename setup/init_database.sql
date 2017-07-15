@@ -59,13 +59,12 @@ CREATE TABLE announcements (
 CREATE TABLE questions (
 	question_id INT NOT NULL AUTO_INCREMENT,
 	user_id INT NOT NULL,
-	receive_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	receive_time DATETIME DEFAULT CURRENT_TIMESTAMP,
 	q_subject VARCHAR(32),
 	q_body VARCHAR(255),
 	answer_time DATETIME DEFAULT NULL,
 	a_subject VARCHAR(32),
 	a_body VARCHAR(255),
-	answered TINYINT NOT NULL DEFAULT 0,
 	PRIMARY KEY (question_id),
 	FOREIGN KEY (user_id) REFERENCES accounts(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
