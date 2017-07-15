@@ -1,7 +1,7 @@
 
 <!-- Begin generated alerts -->
 
-<div class="col-sm-2" id="alerts">
+<div id="alerts">
 <?php
 if (isset($has_alert)) {
 	if ($has_alert === true) {

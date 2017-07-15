@@ -25,3 +25,15 @@ textarea {
 	text-align: center;
 	margin: 10px 0;
 }
+
+#alerts {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20%;
+	z-index: 1;
+}
+
+#everything {
+	position: relative;
+}

@@ -59,8 +59,8 @@ table.ranklist tr:hover td {
 	background: #eeeeee;
 }
 
-td.changed {
-	background: #00c600;
+table.ranklist tr td.changed {
+	background: #6aaf6a;
 	-moz-animation: changedAnimation 3s ease 0s forwards;
 	-webkit-animation: changedAnimation 3s ease 0s forwards;
 	-o-animation: changedAnimation 3s ease 0s forwards;

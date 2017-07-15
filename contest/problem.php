@@ -42,11 +42,11 @@ require_once __DIR__."/../backend/submissions.php";
 
 		<?php require __DIR__."/include/topbar.php"; ?>
 
-		<div class="container-fluid">
+		<div class="container-fluid" id="everything">
 			<div class="row">
 				<?php require __DIR__."/include/sidebar.php"; ?>
 
-				<div class="col-sm-6">
+				<div class="col-sm-9">
 					<div class="page-header">
 						<h2><?php echo $my_data["full_title"]; ?></h2>
 					</div>

@@ -34,14 +34,14 @@ require_once __DIR__."/../backend/contest_overview.php";
 						<div class="row">
 							<div class="col-sm-3 text-right">Contest start time:</div>
 							<div class="col-sm-9">
-								<?php echo $contest_start_time; ?>
+								<?php echo $contest_start_time; ?> (UTC)
 								(<a href="#" data-toggle="modal" data-target="#contest_start-modal">Change</a>)
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3 text-right">Contest end time:</div>
 							<div class="col-sm-9">
-								<?php echo $contest_end_time; ?>
+								<?php echo $contest_end_time; ?> (UTC)
 								(<a href="#" data-toggle="modal" data-target="#contest_end-modal">Change</a>)
 							</div>
 						</div>

@@ -1,8 +1,9 @@
 
 <!-- Begin generated sidebar -->
 
-<div class="col-sm-3 col-sm-offset-1">
+<div class="col-sm-3">
 	<div id="clock">
+		<br /><br />
 	</div>
 	<div class="well side-nav">
 		<ul class="nav nav-list">

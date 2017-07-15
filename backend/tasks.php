@@ -14,11 +14,13 @@ function get_task($task_id) {
 		"full_title" => "Error",
 		"short_title" => "Error",
 		"statement" => "Error",
+		"answer" => "Error",
 		"directory" => "Error",
 		"value" => 0,
 		"decrement" => 0,
 		"minscore" => 0,
-		"success" => false
+		"success" => false,
+		"task_id" => $task_id
 	);
 	$conn = get_conn();
 	if (is_null($conn)) {
@@ -56,6 +58,7 @@ function get_task($task_id) {
 			$task_data["full_title"] = get_problem_data($task_data["directory"], "full_title");
 			$task_data["short_title"] = get_problem_data($task_data["directory"], "short_title");
 			$task_data["statement"] = get_problem_data($task_data["directory"], "statement");
+			$task_data["answer"] = get_problem_data($task_data["directory"], "answer");
 			$task_data["success"] = true;
 		}
 	}

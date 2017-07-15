@@ -12,7 +12,7 @@ require_once __DIR__."/../backend/all_questions.php";
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Overview</title>
+		<title>Questions</title>
 		<?php require __DIR__."/include/header.php"; ?>
 
 		<script>
