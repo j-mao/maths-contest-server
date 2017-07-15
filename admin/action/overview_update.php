@@ -49,8 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$alert_class = "danger";
 			} else {
 				$iso = date('c', $timestamp);
-				$iso = substr($iso, 0, -6); # remove the timezone because sql doesnt like it
-				$sql = "UPDATE contest SET data_datetime='$iso' WHERE variable='start_time';";
+				$sql = "UPDATE contest SET data_datetime='$timestamp' WHERE variable='start_time';";
 				mysqli_query($conn, $sql);
 				$conn->close();
 				$has_alert = true;
@@ -73,8 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$alert_class = "danger";
 			} else {
 				$iso = date('c', $timestamp);
-				$iso = substr($iso, 0, -6); # remove the timezone because sql doesnt like it
-				$sql = "UPDATE contest SET data_datetime='$iso' WHERE variable='end_time';";
+				$sql = "UPDATE contest SET data_datetime='$timestamp' WHERE variable='end_time';";
 				mysqli_query($conn, $sql);
 				$conn->close();
 				$has_alert = true;

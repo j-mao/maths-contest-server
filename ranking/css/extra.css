@@ -1,62 +1,37 @@
-table.ranklist, table.ranklist tr, table.ranklist tr th, table.ranklist tr td {
-	background: #ffffff;
-	border: 2px solid #ffffff;
-}
-
-table.ranklist th, table.ranklist .value {
-	text-align: center;
-}
-
-table.ranklist tr th {
-	background: #eeeeee;
-}
-
-table.ranklist tr td.tier0 {
+td.tier0 {
 	background: #ffffff;
 }
 
-table.ranklist tr td.tier1 {
-	background: #f1f7f1;
+td.tier1 {
+	background: #e0f8e0;
 }
 
-table.ranklist tr td.tier2 {
-	background: #e2efe2;
+td.tier2 {
+	background: #c0f1c0;
 }
 
-table.ranklist tr td.tier3 {
-	background: #d3e7d3;
+td.tier3 {
+	background: #a0eaa0;
 }
 
-table.ranklist tr td.tier4 {
-	background: #c4dfc4;
+td.tier4 {
+	background: #80e380;
 }
 
-table.ranklist tr td.tier5 {
-	background: #b5d7b5;
+td.tier5 {
+	background: #60dc60;
 }
 
-table.ranklist tr td.tier6 {
-	background: #a6cfa6;
+td.tier6 {
+	background: #40d440;
 }
 
-table.ranklist tr td.tier7 {
-	background: #97c797;
+td.tier7 {
+	background: #20cd20;
 }
 
-table.ranklist tr td.tier8 {
-	background: #88bf88;
-}
-
-table.ranklist tr td.tier9 {
-	background: #79b779;
-}
-
-table.ranklist tr td.tier10 {
-	background: #6aaf6a;
-}
-
-table.ranklist tr:hover td {
-	background: #eeeeee;
+td.tier8 {
+	background: #00c600;
 }
 
 td.changed {
@@ -73,9 +48,4 @@ td.changed {
 
 @-webkit-keyframes changedAnimation {
 	to { background: #ffffff; }
-}
-
-#clock {
-	font-size: 14pt;
-	text-align: center;
 }

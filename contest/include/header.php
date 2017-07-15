@@ -11,7 +11,6 @@
 <?php if ($logged_in) { ?>
 <script src="js/api_conn.js"></script>
 <script src="js/alerts.js"></script>
-<script src="js/clock.js"></script>
 <script src="js/leaderboard.js"></script>
 <?php } ?>
 

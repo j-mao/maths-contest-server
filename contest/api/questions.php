@@ -9,7 +9,7 @@ $num_questions = 0;
 
 if (is_null($conn)) {
 } else {
-	$sql = "SELECT question_id FROM questions WHERE user_id=" . $_SESSION["user_id"] . " AND answer_time IS NOT NULL";
+	$sql = "SELECT question_id FROM questions WHERE user_id=" . $_SESSION["user_id"] . " AND answered=1;";
 	if ($result = mysqli_query($conn, $sql)) {
 		$num_questions = mysqli_num_rows($result);
 		mysqli_free_result($result);

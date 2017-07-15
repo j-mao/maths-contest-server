@@ -10,8 +10,6 @@ sudo apt-get -y install mysql-server
 mysql_secure_installation
 
 sudo apt-get -y install php libapache2-mod-php php-mcrypt php-mysql
-sudo apt install php libapache2-mod-php
-sudo apt-get install php-mysql
 
 sudo systemctl restart apache2
 

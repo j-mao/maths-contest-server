@@ -48,14 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$conn->close();
 		}
 	}
-	if ($has_alert) {
-		$alert_subject = "Failed to log in.";
-		$alert_class = "danger";
-	} else {
-		$_SESSION["user_id"] = -1;
-		$_SESSION["admin"] = true;
-		header("location: /admin/overview.php");
-	}
+}
+
+if ($has_alert) {
+	$alert_subject = "Failed to log in.";
+	$alert_class = "danger";
+} else {
+	$_SESSION["user_id"] = -1;
+	$_SESSION["admin"] = true;
+	header("location: /admin/overview.php");
 }
 
 ?>

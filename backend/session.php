@@ -38,14 +38,14 @@ function require_not_login() {
 }
 
 function require_admin() {
-	if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true) {
+	if (!isset($_SESSION["admin"]) || !$_SESSION["admin"]) {
 		header("location: /admin/");
 	}
 }
 
 function require_not_admin() {
-	if (isset($_SESSION["admin"]) && $_SESSION["admin"] === true) {
-		header("location: /admin/overview.php");
+	if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
+		header("location: /admin/general.php");
 	}
 }
 

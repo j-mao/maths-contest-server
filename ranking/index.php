@@ -11,7 +11,7 @@ $task_data = get_all_tasks();
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Ranking</title>
+		<title>Welcome</title>
 		<script type="text/javascript">
 		var problem_values = [
 		<?php
@@ -19,7 +19,7 @@ $task_data = get_all_tasks();
 		foreach ($task_data as $task) {
 			if ($comma) echo ", ";
 			$comma = true;
-			echo $task["value"];
+			echo $task_data["value"];
 		}
 		?>
 		];
@@ -37,22 +37,21 @@ $task_data = get_all_tasks();
 				<h1>Ranking</h1>
 			</div>
 			<div class="row">
-				<div class="col-sm-3" id="clock">
+				<div class="col-sm-3">
+					<p>Clock not yet coded</p>
 				</div>
 				<div class="col-sm-9">
-					<table class="table table-responsive ranklist">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Name</th>
-								<th>Total</th>
-								<?php
-									foreach ($task_data as $task) {
-										echo "<th>" . $task["short_title"] . "</th>";
-									}
-								?>
-							</tr>
-						</thead>
+					<table class="table table-striped table-bordered table-hover table-responsive">
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>=</th>
+							<?php
+								foreach ($task_data as $task) {
+									echo "<th>" . $task["short_title"] . "</th>";
+								}
+							?>
+						</tr>
 						<tbody id="ranklist">
 						</tbody>
 					</table>

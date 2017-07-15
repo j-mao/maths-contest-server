@@ -4,7 +4,7 @@ var refresh_poll = null;
 var cur_state = {};
 
 function get_ranklist() {
-	return JSON.parse(api_request('ranklist.php'));
+	return api_request('ranklist.php');
 }
 
 function getTier(scored, available) {
@@ -15,8 +15,7 @@ function updateRanking() {
 	new_state = get_ranklist();
 	var str = '';
 	var idx = 1, rank = 1, prev_score = -1000;
-	for (var i = 0;i < new_state.length;i++) {
-		var user = new_state[i];
+	for (user in new_state) {
 		var changed = false;
 		if (!(user['nickname'] in cur_state)) {
 			cur_state[user['nickname']] = user['total'];
@@ -30,16 +29,14 @@ function updateRanking() {
 		}
 		str += '<tr>';
 		if (changed) {
-			str += '<td class="value changed">'+rank+'</td>';
+			str += '<td class="changed">'+rank+'</td>';
 		} else {
-			str += '<td class="value">'+rank+'</td>';
+			str += '<td>'+rank+'</td>';
 		}
 		str += '<td>'+user['nickname']+'</td>';
-		str += '<td class="value tier'+getTier(user['total'], total_points)+'">'+user['total']+'</td>';
-		var idx2 = 0;
-		for (var score in user['scores']) {
-			str += '<td class="value tier'+getTier(user['scores'][score], problem_values[idx2])+'">'+user['scores'][score]+'</td>';
-			idx2++;
+		str += '<td class="tier'+getTier(user['total'], total_points)+'">'+user['total']+'</td>';
+		for (var i = 0;i < user['scores'].length;i++) {
+			str += '<td class="tier'+getTier(user['scores'][i], problem_values[i])+'">'+user['scores'][i]+'</td>';
 		}
 		str += '</tr>';
 		idx++;

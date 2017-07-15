@@ -1,7 +1,6 @@
 
 <!-- Begin generated alerts -->
 
-<br />
 <div id="alerts">
 <?php
 if (isset($has_alert)) {

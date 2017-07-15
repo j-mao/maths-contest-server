@@ -3,9 +3,9 @@
 require_once __DIR__."/../backend/session.php";
 require_not_login();
 require_admin();
+require_once __DIR__."/../backend/all_questions.php";
 require_once __DIR__."/../backend/timestamper.php";
 require_once __DIR__."/action/question_send.php";
-require_once __DIR__."/../backend/all_questions.php";
 
 ?>
 
@@ -14,55 +14,14 @@ require_once __DIR__."/../backend/all_questions.php";
 	<head>
 		<title>Overview</title>
 		<?php require __DIR__."/include/header.php"; ?>
-
-		<script>
-		<?php
-		$varnames = ['author_nicknames', 'author_usernames', 'question_times', 'question_subjects', 'question_bodies', 'question_response_subject', 'question_response_body', 'question_ids'];
-		$sqlkeys = ['nickname', 'username', 'receive_time', 'q_subject', 'q_body', 'a_subject', 'a_body', 'question_id'];
-		$numtodo = 8;
-		for ($i = 0;$i < $numtodo;$i++) {
-			echo "var " . $varnames[$i] . " = [];";
-			foreach ($questions as $question) {
-				echo $varnames[$i] . '.push("' . $question[$sqlkeys[$i]] . '");';
-			}
-			echo "\n";
-		}
-		?>
-		function answerQ(q_id) {
-			document.getElementById("author-nickname").innerHTML = author_nicknames[q_id];
-			document.getElementById("author-username").innerHTML = author_usernames[q_id];
-			document.getElementById("question-time").innerHTML = question_times[q_id];
-			document.getElementById("question-subject").innerHTML = question_subjects[q_id];
-			document.getElementById("question-body").innerHTML = question_bodies[q_id];
-
-			document.getElementById("question-response").value = '';
-			if (question_response_subject[q_id] == 'Yes') {
-				document.getElementById("question-responsetype").value = 'yes';
-			} else if (question_response_subject[q_id] == 'No') {
-				document.getElementById("question-responsetype").value = 'no';
-			} else if (question_response_subject[q_id] == 'No comment') {
-				document.getElementById("question-responsetype").value = 'no_comment';
-			} else if (question_response_subject[q_id] == 'Invalid question') {
-				document.getElementById("question-responsetype").value = 'invalid';
-			} else if (question_response_subject[q_id] == 'Answered in task description') {
-				document.getElementById("question-responsetype").value = 'answered';
-			} else {
-				document.getElementById("question-responsetype").value = 'custom';
-				document.getElementById("question-response").value = question_response_body[q_id];
-			}
-			document.getElementById("question-id").value = parseInt(question_ids[q_id]);
-			$("#response-modal").modal();
-		}
-		</script>
-
 	</head>
 	<body class="contains-scroll">
 		<div class="hidden-xs contains-scroll">
 			<div class="row contains-scroll">
 				<?php require __DIR__."/include/sidebar.html"; ?>
 				<div class="col-sm-9 contains-scroll scrollable">
+					<?php require __DIR__."/include/alerts.php"; ?>
 					<div class="container-fluid">
-						<?php require __DIR__."/include/alerts.php"; ?>
 						<div class="page-header">
 							<h2>Questions</h2>
 						</div>
@@ -78,9 +37,9 @@ require_once __DIR__."/../backend/all_questions.php";
 									echo '<div class="panel-heading">';
 									echo 'Question from <strong>' . $question["nickname"] . '</strong>';
 									echo ' (username: <em>' . $question["username"] . '</em>)';
+									echo '<span class="pull-right">' . time_format($question["receive_time"]) . '</span>';
 									echo '</div>';
 									echo '<div class="panel-body">';
-									echo '<span class="pull-right">' . time_format($question["receive_time"]) . '</span>';
 									if ($question["q_subject"] != "") {
 										echo '<h4>' . $question["q_subject"] . '</h4>';
 									} else {
@@ -91,7 +50,6 @@ require_once __DIR__."/../backend/all_questions.php";
 									if ($question["answer_time"] === NULL) {
 										echo '<p>Click <a href="#" onclick="answerQ(' . $id . ');">here</a> to answer this question.</p>';
 									} else {
-										echo '<span class="pull-right">' . time_format($question["answer_time"]) . '</span>';
 										if ($question["a_subject"] != "") {
 											echo '<h4>' . $question["a_subject"] . '</h4>';
 										} else {
@@ -122,10 +80,8 @@ require_once __DIR__."/../backend/all_questions.php";
 					<div class="modal-body">
 						<p>
 							This question was sent by <strong><span id="author-nickname"></span></strong>
-							(username: <em><span id="author-username"></span></em>).
-						</p>
-						<p>
-							It was received at <span id="question-time"></span>.
+							(username: <em><span id="author-username"></span></em>)
+							at the time <span id="question-time"></span>.
 						</p>
 						<hr />
 						<h4 id="question-subject"></h4>
@@ -142,7 +98,7 @@ require_once __DIR__."/../backend/all_questions.php";
 								<option value="custom">Custom response</option>
 							</select>
 						</p>
-						<textarea rows=8 class="form-control" id="question-response" name="question-response" maxlength=255></textarea>
+						<textarea rows=8 class="form-control" id="question-response" name="question-response" maxlength=255 />
 						<input type="hidden" id="question-id" name="question-id" value="-1" />
 					</div>
 					<div class="modal-footer">
@@ -152,6 +108,45 @@ require_once __DIR__."/../backend/all_questions.php";
 				</form>
 			</div>
 		</div>
+
+		<script type="text/javascript">
+		<?php
+		$varnames = ['author_nicknames', 'author_usernames', 'question_times', 'question_subjects', 'question_bodies', 'question_response_subject', 'question_response_body', 'question_ids'];
+		$sqlkeys = ['nickname', 'username', 'receive_time', 'q_subject', 'q_body', 'a_subject', 'a_body', 'question_id'];
+		$numtodo = 8;
+		for ($i = 0;$i < $numtodo;$i++) {
+			echo "var " . $varnames[$i] . " = [];";
+			foreach ($questions as $question) {
+				echo $varnames[$i] . '.push("' . $question[$sqlkeys[$i]] . '");';
+			}
+		}
+		?>
+		function answerQ(q_id) {
+			document.getElementById("author-nickname").innerHTML = author_nicknames[q_id];
+			document.getElementById("author-username").innerHTML = author_usernames[q_id];
+			document.getElementById("question-time").innerHTML = question_times[q_id];
+			document.getElementById("question-subject").innerHTML = question_subjects[q_id];
+			document.getElementById("question-body").innerHTML = question_bodies[q_id];
+
+			document.getElementById("question-response").value = '';
+			if (question_response_subject[q_id] == 'Yes') {
+				document.getElementById("question-responsetype").value = 'yes';
+			} else if (question_response_subject[q_id] == 'No') {
+				document.getElementById("question-responsetype").value = 'no';
+			} else if (question_response_subject[q_id] == 'No comment') {
+				document.getElementById("question-responsetype").value = 'no_comment';
+			} else if (question_response_subject[q_id] == 'Invalid question') {
+				document.getElementById("question-responsetype").value = 'invalid';
+			} else if (question_response_subject[q_id] == 'Answered in task description') {
+				document.getElementById("question-responsetype").value = 'answered';
+			} else {
+				document.getElementById("question-responsetype").value = 'custom';
+				document.getElementById("question-response").value = question_response_body[q_id];
+			}
+			document.getElementById("question-id").value = parseInt(question_ids[q_id]);
+			$("#response-modal").modal();
+		}
+		</script>
 
 	</body>
 </html>
