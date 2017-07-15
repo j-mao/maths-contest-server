@@ -19,3 +19,9 @@ div.side-nav ul.nav-list li a.active {
 textarea {
 	resize: vertical;
 }
+
+#clock {
+	font-size: 14pt;
+	text-align: center;
+	margin: 10px 0;
+}

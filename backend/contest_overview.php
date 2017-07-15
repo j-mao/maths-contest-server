@@ -11,6 +11,7 @@ $contest_num_contestants = "";
 $conn = get_conn();
 
 if (is_null($conn)) {
+	/*
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (isset($_POST['contest_name_submit'])) {
 			$new_name = mysqli_real_escape_string($conn, stripslashes($_POST['contest_name']));
@@ -28,8 +29,35 @@ if (is_null($conn)) {
 			mysqli_query($conn, $sql);
 		}
 	}
-	;
+	*/
 } else {
+	$sql = "SELECT * FROM contest;";
+	if ($result = mysqli_query($conn, $sql)) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			if ($row["variable"] == "contest_name") {
+				$contest_name = $row["data_varchar"];
+			} else if ($row["variable"] == "start_time") {
+				$contest_start_time = $row["data_datetime"];
+			} else if ($row["variable"] == "end_time") {
+				$contest_end_time = $row["data_datetime"];
+			}
+		}
+		mysqli_free_result($result);
+	}
+	$sql = "SELECT COUNT(task_id) AS numtasks FROM tasks;";
+	if ($result = mysqli_query($conn, $sql)) {
+		if ($row = mysqli_fetch_assoc($result)) {
+			$contest_num_tasks = $row["numtasks"];
+		}
+		mysqli_free_result($result);
+	}
+	$sql = "SELECT COUNT(user_id) AS numcontestants FROM accounts;";
+	if ($result = mysqli_query($conn, $sql)) {
+		if ($row = mysqli_fetch_assoc($result)) {
+			$contest_num_contestants = $row["numcontestants"];
+		}
+		mysqli_free_result($result);
+	}
 	$conn->close();
 }
 

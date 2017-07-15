@@ -20,7 +20,7 @@ if (is_null($conn)) {
 			if (!array_key_exists($row["nickname"], $scores)) {
 				$scores[$row["nickname"]] = [];
 			}
-			$scores[$row["nickname"]][$row["task_id"]] = calc_score($row["solved"], $row["num_submissions"], $row["value"], $row["decrement"], $row["minscore"]);
+			$scores[$row["nickname"]]["task".$row["task_id"]] = calc_score($row["solved"], $row["num_submissions"], $row["value"], $row["decrement"], $row["minscore"]);
 		}
 		mysqli_free_result($result);
 	} else {

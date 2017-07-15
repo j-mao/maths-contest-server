@@ -18,8 +18,8 @@ require_once __DIR__."/action/login.php";
 			<div class="row contains-scroll">
 				<?php require __DIR__."/include/sidebar.html"; ?>
 				<div class="col-sm-9 contains-scroll scrollable">
-					<?php require __DIR__."/include/alerts.php"; ?>
 					<div class="container-fluid">
+						<?php require __DIR__."/include/alerts.php"; ?>
 						<div class="page-header">
 							<h2>Please log in.</h2>
 						</div>

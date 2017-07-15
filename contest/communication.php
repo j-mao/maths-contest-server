@@ -85,7 +85,7 @@ require_once __DIR__."/../backend/get_communications.php";
 						}
 						echo "\n" . $questions[$i]["q_body"];
 						echo "\n<hr />";
-						if ($questions[$i]["answered"]) {
+						if ($questions[$i]["answer_time"] !== NULL) {
 							echo "\n<div class=\"pull-right\">" . time_format($questions[$i]["answer_time"]) . "</div>";
 							if ($questions[$i]["a_subject"] != "") {
 								echo "\n<h4>" . $questions[$i]["a_subject"] . "</h4>";
