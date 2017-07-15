@@ -77,7 +77,7 @@ function make_dashboard($user_id) {
 		} else {
 			echo "<a class=\"list-group-item\" href=\"#\" onclick=\"request_access(" . $tasks[$i] . ");\">";
 			echo "<i class=\"glyphicon glyphicon-envelope text-danger\"></i>&nbsp;&nbsp;";
-			echo get_problem_data($dirs[$i], "public_display");
+			echo get_problem_data($dirs[$i], "full_title");
 		}
 		if ($i < $solves_arr_len) {
 			if ($solves[$i] > 0) {
