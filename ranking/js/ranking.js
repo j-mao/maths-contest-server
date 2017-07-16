@@ -8,7 +8,7 @@ function get_ranklist() {
 }
 
 function getTier(scored, available) {
-	return Math.floor(scored*8/available);
+	return Math.floor(scored*10/available);
 }
 
 function updateRanking() {
@@ -37,8 +37,12 @@ function updateRanking() {
 		str += '<td>'+user['nickname']+'</td>';
 		str += '<td class="value tier'+getTier(user['total'], total_points)+'">'+user['total']+'</td>';
 		var idx2 = 0;
-		for (var score in user['scores']) {
-			str += '<td class="value tier'+getTier(user['scores'][score], problem_values[idx2])+'">'+user['scores'][score]+'</td>';
+		for (var j = 0;j < problem_values.length;j++) {
+			var score = user['scores']['task'+(j+1)];// WARNING these are actually task_ids and not array indices
+			if (score === undefined) {
+				score = 0;
+			}
+			str += '<td class="value tier'+getTier(score, problem_values[idx2])+'">'+score+'</td>';
 			idx2++;
 		}
 		str += '</tr>';

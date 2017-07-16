@@ -37,11 +37,11 @@ require_once __DIR__."/../backend/get_communications.php";
 							echo "\n<div class=\"alert alert-info\">";
 							echo "\n<div class=\"pull-right\">" . time_format($announcements[$i]["send_time"]) . "</div>";
 							if ($announcements[$i]["subject"] != "") {
-								echo "\n<h4>" . $announcements[$i]["subject"] . "</h4>";
+								echo "\n<h4>" . htmlspecialchars($announcements[$i]["subject"]) . "</h4>";
 							} else {
 								echo "\n<h4><em>(no subject)</em></h4>";
 							}
-							echo "\n" . $announcements[$i]["body"];
+							echo "\n" . htmlspecialchars($announcements[$i]["body"]);
 							echo "\n</div>";
 						}
 					}
@@ -79,20 +79,20 @@ require_once __DIR__."/../backend/get_communications.php";
 						echo "\n<div class=\"alert alert-info\">";
 						echo "\n<div class=\"pull-right\">" . time_format($questions[$i]["receive_time"]) . "</div>";
 						if ($questions[$i]["q_subject"] != "") {
-							echo "\n<h4>" . $questions[$i]["q_subject"] . "</h4>";
+							echo "\n<h4>" . htmlspecialchars($questions[$i]["q_subject"]) . "</h4>";
 						} else {
 							echo "\n<h4><em>(no subject)</em></h4>";
 						}
-						echo "\n" . $questions[$i]["q_body"];
+						echo "\n" . htmlspecialchars($questions[$i]["q_body"]);
 						echo "\n<hr />";
 						if ($questions[$i]["answer_time"] !== NULL) {
 							echo "\n<div class=\"pull-right\">" . time_format($questions[$i]["answer_time"]) . "</div>";
 							if ($questions[$i]["a_subject"] != "") {
-								echo "\n<h4>" . $questions[$i]["a_subject"] . "</h4>";
+								echo "\n<h4>" . htmlspecialchars($questions[$i]["a_subject"]) . "</h4>";
 							} else {
 								echo "\n<h4><em>(no subject)</em></h4>";
 							}
-							echo "\n" . $questions[$i]["a_body"];
+							echo "\n" . htmlspecialchars($questions[$i]["a_body"]);
 						} else {
 							echo "\n<h4 class=\"text-center\"><em>No answer yet.</em></h4>";
 						}
@@ -110,11 +110,11 @@ require_once __DIR__."/../backend/get_communications.php";
 							echo "\n<div class=\"alert alert-info\">";
 							echo "\n<div class=\"pull-right\">" . time_format($messages[$i]["send_time"]) . "</div>";
 							if ($messages[$i]["subject"] != "") {
-								echo "\n<h4>" . $messages[$i]["subject"] . "</h4>";
+								echo "\n<h4>" . htmlspecialchars($messages[$i]["subject"]) . "</h4>";
 							} else {
 								echo "\n<h4><em>(no subject)</em></h4>";
 							}
-							echo "\n" . $messages[$i]["body"];
+							echo "\n" . htmlspecialchars($messages[$i]["body"]);
 							echo "\n</div>";
 						}
 					}

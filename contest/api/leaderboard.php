@@ -39,7 +39,7 @@ if (!$has_self) {
 }
 
 function cmp($a, $b) {
-	return $a["score"]-$b["score"];
+	return $b["score"]-$a["score"];
 }
 
 usort($leaderboard, "cmp");

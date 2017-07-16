@@ -24,7 +24,8 @@ require_not_admin();
 					<div class="page-header">
 						<h2>Overview</h2>
 					</div>
-					Insert welcome message here.
+					Insert welcome message here.<br />
+					todolist.push(new Task('welcome message'));<br />
 				</div>
 
 				<?php require __DIR__."/include/alerts.php"; ?>

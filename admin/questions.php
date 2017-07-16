@@ -23,7 +23,7 @@ require_once __DIR__."/../backend/all_questions.php";
 		for ($i = 0;$i < $numtodo;$i++) {
 			echo "var " . $varnames[$i] . " = [];";
 			foreach ($questions as $question) {
-				echo $varnames[$i] . '.push("' . $question[$sqlkeys[$i]] . '");';
+				echo $varnames[$i] . '.push(' . json_encode($question[$sqlkeys[$i]]) . ');';
 			}
 			echo "\n";
 		}
@@ -76,28 +76,28 @@ require_once __DIR__."/../backend/all_questions.php";
 										echo '<div class="panel panel-default">';
 									}
 									echo '<div class="panel-heading">';
-									echo 'Question from <strong>' . $question["nickname"] . '</strong>';
-									echo ' (username: <em>' . $question["username"] . '</em>)';
+									echo 'Question from <strong>' . htmlspecialchars($question["nickname"]) . '</strong>';
+									echo ' (username: <em>' . htmlspecialchars($question["username"]) . '</em>)';
 									echo '</div>';
 									echo '<div class="panel-body">';
 									echo '<span class="pull-right">' . time_format($question["receive_time"]) . '</span>';
 									if ($question["q_subject"] != "") {
-										echo '<h4>' . $question["q_subject"] . '</h4>';
+										echo '<h4>' . htmlspecialchars($question["q_subject"]) . '</h4>';
 									} else {
 										echo '<h4><em>(no subject)</em></h4>';
 									}
-									echo '<p>' . $question["q_body"] . '</p>';
+									echo '<p>' . htmlspecialchars($question["q_body"]) . '</p>';
 									echo '<hr />';
 									if ($question["answer_time"] === NULL) {
 										echo '<p>Click <a href="#" onclick="answerQ(' . $id . ');">here</a> to answer this question.</p>';
 									} else {
 										echo '<span class="pull-right">' . time_format($question["answer_time"]) . '</span>';
 										if ($question["a_subject"] != "") {
-											echo '<h4>' . $question["a_subject"] . '</h4>';
+											echo '<h4>' . htmlspecialchars($question["a_subject"]) . '</h4>';
 										} else {
 											echo '<h4><em>(no subject)</em></h4>';
 										}
-										echo '<p>' . $question["a_body"] . '</p>';
+										echo '<p>' . htmlspecialchars($question["a_body"]) . '</p>';
 										echo '<p>Click <a href="#" onclick="answerQ(' . $id . ');">here</a> to change your answer.</p>';
 									}
 									echo '</div>';

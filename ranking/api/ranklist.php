@@ -37,7 +37,7 @@ foreach ($scores as $nickname => $scoredata) {
 }
 
 function cmp($a, $b) {
-	return $a["score"]-$b["score"];
+	return $b["total"]-$a["total"];
 }
 
 usort($ranklist, "cmp");

@@ -20,7 +20,7 @@ require_once __DIR__."/action/login.php";
 		<div class="container" id="everything">
 			<div class="row">
 
-				<div class="col-sm-6 col-sm-offset-3">
+				<div class="col-sm-8 col-sm-offset-2">
 					<div class="jumbotron">
 						<h1>Welcome</h1>
 						<p>Please log in</p>
@@ -47,7 +47,7 @@ require_once __DIR__."/action/login.php";
 					</div>
 				</div>
 
-				<div class="col-sm-1"></div>
+				<div class="col-sm-2"></div>
 
 				<?php require __DIR__."/include/alerts.php"; ?>
 			</div>

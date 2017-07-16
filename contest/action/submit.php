@@ -6,6 +6,22 @@ require_not_admin();
 
 require_once __DIR__."/../../backend/client_action.php";
 
+function fixNumber($value) {
+	$value = strpos($value,'.')!==false ? rtrim(rtrim($value,'0'),'.') : $value;
+	$negative = ($value[0] == '-');
+	if ($negative) {
+		$value = substr($value, 1);
+	}
+	$value = ltrim($value, '0');
+	if ($value === '' || $value[0] === '.') {
+		$value = '0' . $value;
+	}
+	if ($negative && $value != '0') {
+		$value = '-' . $value;
+	}
+	return $value;
+}
+
 function remove_spaces($str) {
 	return preg_replace('/\s/', '', $str);
 }
@@ -24,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (in_contest($task_id)) {
 		$submitted_answer = $_POST["answer"];
 		if (is_numeric($submitted_answer)) {
-			// my_data should be defined because the only page that calls this file is /contest/problem.php
+			$submitted_answer = fixNumber($submitted_answer);
 			$expected_answer = get_problem_data($my_data["directory"], "answer");
 			$verdict = check_answer($submitted_answer, $expected_answer);
 			submit_answer($_SESSION["user_id"], $task_id, $submitted_answer, $verdict);
