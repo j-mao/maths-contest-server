@@ -107,4 +107,42 @@ function in_contest($task_id) {
 	return $task_exists;
 }
 
+function prev_next($task_id) {
+	$conn = get_conn();
+	$tasks = [];
+	if (is_null($conn)) {
+	} else {
+		$sql = "SELECT MAX(task_id) AS previous FROM tasks WHERE task_id<$task_id;";
+		if ($result = mysqli_query($conn, $sql)) {
+			if ($row = mysqli_fetch_assoc($result)) {
+				$tasks[] = $row["previous"];
+			} else {
+				$tasks[] = NULL;
+			}
+			mysqli_free_result($result);
+		}
+		if ($tasks[0] !== NULL) {
+			$tasks[] = has_access($tasks[0]);
+		} else {
+			$tasks[] = false;
+		}
+		$sql = "SELECT MIN(task_id) AS next FROM tasks WHERE task_id>$task_id;";
+		if ($result = mysqli_query($conn, $sql)) {
+			if ($row = mysqli_fetch_assoc($result)) {
+				$tasks[] = $row["next"];
+			} else {
+				$tasks[] = NULL;
+			}
+			mysqli_free_result($result);
+		}
+		if ($tasks[2] !== NULL) {
+			$tasks[] = has_access($tasks[2]);
+		} else {
+			$tasks[] = false;
+		}
+		$conn->close();
+	}
+	return $tasks;
+}
+
 ?>

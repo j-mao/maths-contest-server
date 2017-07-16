@@ -21,6 +21,23 @@ function get_submissions($user_id, $task_id) {
 	return $submissions;
 }
 
+function has_solved($user_id, $task_id) {
+	$conn = get_conn();
+	$solved = false;
+	if (is_null($conn)) {
+	} else {
+		$sql = "SELECT submission_id FROM submissions WHERE user_id=$user_id AND task_id=$task_id AND verdict=1;";
+		if ($result = mysqli_query($conn, $sql)) {
+			if ($row = mysqli_fetch_assoc($result)) {
+				$solved = true;
+			}
+			mysqli_free_result($result);
+		}
+		$conn->close();
+	}
+	return $solved;
+}
+
 function make_submission_table($user_id, $task_id) {
 	echo "\n\n<!-- Begin generated submission table -->\n\n";
 	$submissions = get_submissions($user_id, $task_id);

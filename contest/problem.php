@@ -39,6 +39,7 @@ require_once __DIR__."/../backend/submissions.php";
 		<?php require __DIR__."/include/header.php"; ?>
 		<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/javascript" src="/contest/js/access.js"></script>
 	</head>
 	<body>
 
@@ -56,6 +57,11 @@ require_once __DIR__."/../backend/submissions.php";
 						<?php echo $my_data["statement"]; ?>
 					</p>
 					<br />
+					<?php if (has_solved($_SESSION["user_id"], $task_id)) { ?>
+					<p>
+						You have already solved this problem.
+					</p>
+					<?php } else { ?>
 					<p>
 						<strong>Think you have the answer?</strong>
 						Send it through here.
@@ -67,6 +73,31 @@ require_once __DIR__."/../backend/submissions.php";
 						<input type="hidden" name="task_id" value="<?php echo $_GET["task_id"]; ?>" />
 						<input type="submit" class="btn btn-success" value="Submit" />
 					</form>
+					<?php } ?>
+					<br />
+					<div class="btn-group">
+					<?php
+					$tasks = prev_next($task_id);
+					if ($tasks[0] !== NULL) {
+						if ($tasks[1]) {
+							echo '<a href="/contest/problem.php?task_id=' . $tasks[0] . '" class="btn btn-default">Previous</a>';
+						} else {
+							echo '<a href="#" onclick="request_access(' . $tasks[0] . ');" class="btn btn-default">Previous</a>';
+						}
+					} else {
+						echo '<a href="#" class="btn btn-default disabled">Previous</a>';
+					}
+					if ($tasks[2] !== NULL) {
+						if ($tasks[3]) {
+							echo '<a href="/contest/problem.php?task_id=' . $tasks[2] . '" class="btn btn-default">Next</a>';
+						} else {
+							echo '<a href="#" onclick="request_access(' . $tasks[2] . ');" class="btn btn-default">Next</a>';
+						}
+					} else {
+						echo '<a href="#" class="btn btn-default disabled">Next</a>';
+					}
+					?>
+					</div>
 					<hr />
 					<p>
 						<h3>Previous submissions</h3>
