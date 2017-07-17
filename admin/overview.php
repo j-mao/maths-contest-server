@@ -78,7 +78,7 @@ require_once __DIR__."/../backend/contest_overview.php";
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<input type="submit" class="btn btn-success" value="Update" name="contest_name_submit" maxlength=32 />
+						<input type="submit" class="btn btn-success" value="Update" name="contest_name_submit" />
 					</div>
 				</form>
 			</div>
@@ -99,7 +99,7 @@ require_once __DIR__."/../backend/contest_overview.php";
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<input type="submit" class="btn btn-success" value="Update" name="contest_start_time_submit" maxlength=64 />
+						<input type="submit" class="btn btn-success" value="Update" name="contest_start_time_submit" />
 					</div>
 				</form>
 			</div>
@@ -120,7 +120,7 @@ require_once __DIR__."/../backend/contest_overview.php";
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<input type="submit" class="btn btn-success" value="Update" name="contest_end_time_submit" maxlength=64 />
+						<input type="submit" class="btn btn-success" value="Update" name="contest_end_time_submit" />
 					</div>
 				</form>
 			</div>

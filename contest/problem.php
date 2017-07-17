@@ -3,6 +3,7 @@
 require_once __DIR__."/../backend/session.php";
 require_login();
 require_not_admin();
+require_once __DIR__."/../backend/clock_data.php";
 
 if (!isset($_GET["task_id"])) {
 	http_response_code(404);
@@ -27,7 +28,9 @@ if (!$my_data["success"]) {
 	die();
 }
 
-require_once __DIR__."/action/submit.php";
+if ($current_time < $end_time) {
+	require_once __DIR__."/action/submit.php";
+}
 require_once __DIR__."/../backend/submissions.php";
 
 ?>
@@ -50,6 +53,14 @@ require_once __DIR__."/../backend/submissions.php";
 				<?php require __DIR__."/include/sidebar.php"; ?>
 
 				<div class="col-sm-9">
+					<?php if ($current_time < $start_time) { ?>
+					<div class="page-header">
+						<h2>The problem name goes here.</h2>
+					</div>
+					<p>
+						Please wait for the contest to start. The problem will appear here when that happens.
+					</p>
+					<?php } else { ?>
 					<div class="page-header">
 						<h2><?php echo $my_data["full_title"]; ?></h2>
 					</div>
@@ -99,10 +110,9 @@ require_once __DIR__."/../backend/submissions.php";
 					?>
 					</div>
 					<hr />
-					<p>
-						<h3>Previous submissions</h3>
-						<?php make_submission_table($_SESSION["user_id"], $task_id); ?>
-					</p>
+					<h3>Previous submissions</h3>
+					<?php make_submission_table($_SESSION["user_id"], $task_id); ?>
+					<?php } ?>
 				</div>
 
 				<?php require __DIR__."/include/alerts.php"; ?>

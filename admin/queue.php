@@ -56,7 +56,7 @@ $all_tasks = get_all_tasks();
 										echo "<td>" . $submission["answer"] . "</td>";
 										echo "<td>Incorrect</td>";
 									}
-									echo "<td><form onsubmit='return confirm(\"Do you really want to delete this submission?\");' action='?' method='POST'><input type='hidden'name='deleteID' value='" . $submission["submission_id"] . "' /><input type='submit' class='btn btn-xs btn-danger' value='Delete' /></form></td>";
+									echo "<td><form onsubmit='return confirm(\"Do you really want to delete this submission?\");' action='?' method='POST'><input type='hidden' name='deleteID' value='" . $submission["submission_id"] . "' /><input type='submit' class='btn btn-xs btn-danger' value='Delete' /></form></td>";
 									echo "</tr>";
 								}
 								?>

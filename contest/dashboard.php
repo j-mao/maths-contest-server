@@ -5,6 +5,7 @@ require_login();
 require_not_admin();
 
 require_once __DIR__."/../backend/make_dashboard.php";
+require_once __DIR__."/../backend/clock_data.php";
 
 ?>
 
@@ -28,7 +29,12 @@ require_once __DIR__."/../backend/make_dashboard.php";
 						<h2>Dashboard</h2>
 					</div>
 
-					<?php make_dashboard($_SESSION["user_id"]); ?>
+					<?php if ($current_time < $start_time) { ?>
+					<p>The problem list will appear here when the contest starts.</p>
+					<?php } else {
+						make_dashboard($_SESSION["user_id"]);
+					}
+					?>
 
 				</div>
 

@@ -147,7 +147,7 @@ require_once __DIR__."/../backend/all_questions.php";
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<input type="submit" class="btn btn-success" value="Send" name="response-send" maxlength=32 />
+						<input type="submit" class="btn btn-success" value="Send" name="response-send" />
 					</div>
 				</form>
 			</div>

@@ -13,6 +13,7 @@
 <script src="js/alerts.js"></script>
 <script src="js/clock.js"></script>
 <script src="js/leaderboard.js"></script>
+<?php require_once(__DIR__."/timed_refresh.php"); ?>
 <?php } ?>
 
 <!-- End included header -->

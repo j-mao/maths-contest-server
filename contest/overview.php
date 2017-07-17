@@ -3,6 +3,7 @@
 require_once __DIR__."/../backend/session.php";
 require_login();
 require_not_admin();
+require_once __DIR__."/../backend/clock_data.php";
 
 ?>
 
@@ -24,8 +25,11 @@ require_not_admin();
 					<div class="page-header">
 						<h2>Overview</h2>
 					</div>
-					Insert welcome message here.<br />
-					todolist.push(new Task('welcome message'));<br />
+					<?php
+						$file = fopen(__DIR__."/include/overview.html", "r");
+						echo fread($file, filesize(__DIR__."/include/overview.html"));
+						fclose($file);
+					?>
 				</div>
 
 				<?php require __DIR__."/include/alerts.php"; ?>
