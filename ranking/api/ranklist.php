@@ -14,7 +14,7 @@ $scores = [];
 
 if (is_null($conn)) {
 } else {
-	$sql = "SELECT COUNT(submissions.submission_id) AS num_submissions, SUM(submissions.verdict) AS solved, accounts.nickname, submissions.user_id, submissions.task_id, tasks.value, tasks.decrement, tasks.minscore FROM submissions RIGHT JOIN tasks ON tasks.task_id=submissions.task_id RIGHT JOIN accounts ON accounts.user_id=submissions.user_id WHERE verdict>=0 GROUP BY accounts.nickname, submissions.user_id, submissions.task_id, tasks.value, tasks.decrement, tasks.minscore ORDER BY submissions.task_id;";
+	$sql = "SELECT COUNT(submissions.submission_id) AS num_submissions, SUM(submissions.verdict) AS solved, accounts.nickname, submissions.user_id, submissions.task_id, tasks.value, tasks.decrement, tasks.minscore FROM submissions RIGHT JOIN tasks ON tasks.task_id=submissions.task_id RIGHT JOIN accounts ON accounts.user_id=submissions.user_id WHERE accounts.official=1 AND verdict>=0 GROUP BY accounts.nickname, submissions.user_id, submissions.task_id, tasks.value, tasks.decrement, tasks.minscore ORDER BY submissions.task_id;";
 	if ($result = mysqli_query($conn, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			if (!array_key_exists($row["nickname"], $scores)) {
