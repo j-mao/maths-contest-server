@@ -60,11 +60,12 @@ table.ranklist tr:hover td {
 }
 
 table.ranklist tr td.changed {
-	background: #6aaf6a;
-	-moz-animation: changedAnimation 3s ease 0s forwards;
-	-webkit-animation: changedAnimation 3s ease 0s forwards;
-	-o-animation: changedAnimation 3s ease 0s forwards;
-	animation: changedAnimation 3s ease 0s forwards;
+	/*background: #6aaf6a;*/
+	background: #b5d7b5;
+	-moz-animation: changedAnimation 2.5s ease 1s forwards;
+	-webkit-animation: changedAnimation 2.5s ease 1s forwards;
+	-o-animation: changedAnimation 2.5s ease 1s forwards;
+	animation: changedAnimation 2.5s ease 1s forwards;
 }
 
 @keyframes changedAnimation {

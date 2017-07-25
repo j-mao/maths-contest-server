@@ -42,7 +42,7 @@ function make_dashboard($user_id) {
 			mysqli_free_result($result);
 		}
 
-		$sql = "SELECT COUNT(submission_id) AS num_solves, task_id FROM submissions WHERE verdict=1 GROUP BY task_id;";
+		$sql = "SELECT COUNT(submission_id) AS num_solves, task_id FROM submissions RIGHT JOIN accounts ON accounts.user_id=submissions.user_id WHERE verdict=1 AND accounts.official=1 GROUP BY task_id;";
 		$solves_arr_len = 0;
 		if ($result = mysqli_query($conn, $sql)) {
 			while ($row = mysqli_fetch_assoc($result)) {

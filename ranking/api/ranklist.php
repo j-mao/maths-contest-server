@@ -25,6 +25,15 @@ if (is_null($conn)) {
 		mysqli_free_result($result);
 	} else {
 	}
+	$sql = "SELECT nickname FROM accounts WHERE accounts.official=1;";
+	if ($result = mysqli_query($conn, $sql)) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			if (!array_key_exists($row["nickname"], $scores)) {
+				$scores[$row["nickname"]] = [];
+			}
+		}
+		mysqli_free_result($result);
+	}
 	$conn->close();
 }
 
@@ -37,7 +46,10 @@ foreach ($scores as $nickname => $scoredata) {
 }
 
 function cmp($a, $b) {
-	return $b["total"]-$a["total"];
+	if ($a["total"] != $b["total"]) {
+		return $b["total"]-$a["total"];
+	}
+	return strcmp($a["nickname"], $b["nickname"]);
 }
 
 usort($ranklist, "cmp");
