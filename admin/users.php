@@ -4,7 +4,7 @@ require_once __DIR__."/../backend/session.php";
 require_not_login();
 require_admin();
 
-#require_once __DIR__."/action/task_update.php";
+#require_once __DIR__."/action/users_update.php";
 $has_alert = false;
 $alert_subject = '';
 $alert_body = '';
@@ -18,15 +18,15 @@ if (true) {
 	}
 }
 
-require_once __DIR__."/../backend/tasks.php";
-$all_tasks = get_all_tasks();
+require_once __DIR__."/../backend/users.php";
+$all_users = get_all_users();
 
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Tasks</title>
+		<title>Users</title>
 		<?php require __DIR__."/include/header.php"; ?>
 	</head>
 	<body class="contains-scroll">
@@ -37,35 +37,27 @@ $all_tasks = get_all_tasks();
 					<div class="container-fluid">
 						<?php require __DIR__."/include/alerts.php"; ?>
 						<div class="page-header">
-							<h2>Tasks</h2>
+							<h2>Users</h2>
 						</div>
-						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addTask">Add a task</button>
+						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addUser">Add a user</button>
 						<br /> <br />
 						<table class="table table-striped table-bordered table-responsive table-hover">
 						<thead><tr>
 						<th>ID</th>
-						<th>Full title</th>
-						<th>Display name</th>
-						<th>System directory</th>
-						<th>Answer</th>
-						<th>Point value</th>
-						<th>Point decrement</th>
-						<th>Minimum score</th>
+						<th>Name</th>
+						<th>Username</th>
+						<th>Official</th>
 						<th>Action</th>
 						</tr></thead>
 						<tbody>
 						<?php
-							foreach ($all_tasks as $task) {
+							foreach ($all_users as $user) {
 								echo "<tr>";
-								echo "<td>" . $task["task_id"] . "</td>";
-								echo "<td>" . $task["full_title"] . "</td>";
-								echo "<td>" . $task["short_title"] . "</td>";
-								echo "<td>" . $task["directory"] . "</td>";
-								echo "<td>" . $task["answer"] . "</td>";
-								echo "<td>" . $task["value"] . "</td>";
-								echo "<td>" . $task["decrement"] . "</td>";
-								echo "<td>" . $task["minscore"] . "</td>";
-								echo "<td><form onsubmit='return confirm(\"Do you really want to remove this task?\");' action='?' method='POST'><input type='hidden' name='deleteID' value='" . $task["task_id"] . "' /><input type='submit' class='btn btn-xs btn-danger' value='Remove' /></form></td>";
+								echo "<td>" . $user["user_id"] . "</td>";
+								echo "<td>" . $user["nickname"] . "</td>";
+								echo "<td>" . $user["username"] . "</td>";
+								echo "<td>" . $user["official"] . "</td>";
+								echo "<td><form onsubmit='return confirm(\"Do you really want to remove this user?\");' action='?' method='POST'><input type='hidden' name='deleteID' value='" . $user["user_id"] . "' /><input type='submit' class='btn btn-xs btn-danger' value='Remove' /></form></td>";
 								echo "</tr>";
 							}
 						?>
@@ -77,19 +69,19 @@ $all_tasks = get_all_tasks();
 		</div>
 		<?php require __DIR__."/include/screen_xs.html"; ?>
 
-		<div class="modal fade" id="addTask" role="dialog">
+		<div class="modal fade" id="addUser" role="dialog">
 			<div class="modal-dialog">
 				<form action="?" method="POST" class="modal-content">
 					<div class="modal-header">
 						<button class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Add a task</h4>
+						<h4 class="modal-title">Add a user</h4>
 					</div>
 					<div class="modal-body">
 						<p>This action is not yet supported.</p>
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<input type="submit" class="btn btn-success" value="Add" name="add_task_submit" />
+						<input type="submit" class="btn btn-success" value="Add" name="add_user_submit" />
 					</div>
 				</form>
 			</div>
