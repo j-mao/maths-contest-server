@@ -13,6 +13,7 @@ sudo apt-get -y install php libapache2-mod-php php-mcrypt php-mysql
 sudo apt install php libapache2-mod-php
 sudo apt-get install php-mysql
 
+sudo a2enmod rewrite
 sudo systemctl restart apache2
 
 mysql -u root -p < init_database.sql 
