@@ -42,7 +42,7 @@ require_once __DIR__."/action/login.php";
 									<input type="submit" class="btn btn-primary" value="Login" />
 									<button type="reset" class="btn btn-default">Reset</button>
 									<div class="pull-right">
-										<a class="btn btn-warning" href="/contest/register.php">Register</a>
+										<!--<a class="btn btn-warning" href="/contest/register.php">Register</a>-->
 									</div>
 								</div>
 							</div>

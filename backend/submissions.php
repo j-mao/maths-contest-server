@@ -54,7 +54,7 @@ function make_submission_table($user_id, $task_id) {
 	for ($i = $num_submissions - 1;$i >= 0;$i--) {
 		echo "<tr>\n";
 		echo "<td>" . time_format($submissions[$i]["submit_time"]) . "</td>\n";
-		echo "<td>" . htmlspecialchars($submissions[$i]["answer"]) . "</td>\n";
+		echo "<td id=\"submission_$i\">" . htmlspecialchars($submissions[$i]["answer"]) . "</td>\n";
 		if ($submissions[$i]["verdict"] == 1) {
 			echo "<td class=\"success\">Correct</td>\n";
 		} else if ($submissions[$i]["verdict"] == 0) {

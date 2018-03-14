@@ -122,7 +122,8 @@ function prev_next($task_id) {
 			mysqli_free_result($result);
 		}
 		if ($tasks[0] !== NULL) {
-			$tasks[] = has_access($tasks[0]);
+			#$tasks[] = has_access($tasks[0]);
+			$tasks[] = true;
 		} else {
 			$tasks[] = false;
 		}
@@ -136,7 +137,8 @@ function prev_next($task_id) {
 			mysqli_free_result($result);
 		}
 		if ($tasks[2] !== NULL) {
-			$tasks[] = has_access($tasks[2]);
+			#$tasks[] = has_access($tasks[2]);
+			$tasks[] = true;
 		} else {
 			$tasks[] = false;
 		}

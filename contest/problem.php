@@ -15,9 +15,10 @@ $task_id = intval($_GET["task_id"]);
 
 require_once __DIR__."/../backend/client_action.php";
 if (!has_access($_SESSION["user_id"], $task_id)) {
-	http_response_code(404);
-	require __DIR__."/overview.php";
-	die();
+	#http_response_code(404);
+	#require __DIR__."/overview.php";
+	#die();
+	request_access($_SESSION["user_id"], $task_id);
 }
 
 require_once __DIR__."/../backend/tasks.php";
@@ -43,6 +44,7 @@ require_once __DIR__."/../backend/submissions.php";
 		<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<script type="text/javascript" src="/contest/js/access.js"></script>
+		<script type="text/javascript" src="/contest/js/problem.js"></script>
 	</head>
 	<body>
 
@@ -68,7 +70,11 @@ require_once __DIR__."/../backend/submissions.php";
 						<?php echo $my_data["statement"]; ?>
 					</p>
 					<br />
-					<?php if (has_solved($_SESSION["user_id"], $task_id)) { ?>
+					<?php if ($current_time > $end_time) { ?>
+					<p>
+						The contest has ended.
+					</p>
+					<?php } else if (has_solved($_SESSION["user_id"], $task_id)) { ?>
 					<p>
 						You have already solved this problem.
 					</p>
