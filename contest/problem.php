@@ -64,7 +64,7 @@ require_once __DIR__."/../backend/submissions.php";
 					</p>
 					<?php } else { ?>
 					<div class="page-header">
-						<h2><?php echo $my_data["full_title"]; ?></h2>
+						<h2><?php echo $my_data["full_title"]; ?> <small>(<?php echo $my_data["value"]; ?> points)</small></h2>
 					</div>
 					<p>
 						<?php echo $my_data["statement"]; ?>

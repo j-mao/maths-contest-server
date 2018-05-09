@@ -1,6 +1,6 @@
 
 var INTERVAL_MILLIS = 5000;
-var LEADERBOARD_SIZE = 5;
+var LEADERBOARD_SIZE = 3;
 var leaderboard_poll = null;
 
 function makeLeaderboard() {
@@ -16,7 +16,11 @@ function makeLeaderboard() {
 			} else {
 				str += "<li class=\"list-group-item\">";
 			}
-			str += place+". ";
+			if (place <= LEADERBOARD_SIZE) {
+				str += place+". ";
+			} else {
+				str += "&gt;"+LEADERBOARD_SIZE+". ";
+			}
 			str += leaderboard[i].username;
 			str += "<span class=\"pull-right\">";
 			if (leaderboard[i].score == 1) {

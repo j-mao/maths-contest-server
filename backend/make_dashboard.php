@@ -3,10 +3,14 @@
 require_once "conn.php";
 require_once "tasks.php";
 
+$show_solved_by = true;
+
 function make_dashboard($user_id) {
+	global $show_solved_by;
 	echo "\n<!-- Begin generated dashboard -->\n";
 	$conn = get_conn();
 	$tasks = [];
+	$values = [];
 	$dirs = [];
 	$opens = [];
 	$solved = [];
@@ -14,11 +18,12 @@ function make_dashboard($user_id) {
 
 	if (is_null($conn)) {
 	} else {
-		$sql = "SELECT tasks.task_id, problems.directory FROM tasks RIGHT JOIN problems ON tasks.problem_id=problems.problem_id;";
+		$sql = "SELECT tasks.task_id, problems.directory, tasks.value FROM tasks RIGHT JOIN problems ON tasks.problem_id=problems.problem_id;";
 		if ($result = mysqli_query($conn, $sql)) {
 			while ($row = mysqli_fetch_assoc($result)) {
 				$tasks[] = $row["task_id"];
 				$dirs[] = $row["directory"];
+				$values[] = $row["value"];
 			}
 			mysqli_free_result($result);
 		} else {
@@ -79,8 +84,11 @@ function make_dashboard($user_id) {
 			echo "<i class=\"glyphicon glyphicon-envelope text-danger\"></i>&nbsp;&nbsp;";
 			echo get_problem_data($dirs[$i], "full_title");
 		}
+		echo " (" . $values[$i] . " pt";
+		if ($values[$i] != 1) echo "s";
+		echo ")";
 		if ($i < $solves_arr_len) {
-			if ($solves[$i] > 0) {
+			if ($solves[$i] > 0 && $show_solved_by) {
 				echo "<span class=\"badge\">solved by " . $solves[$i] . "</span>\n";
 			}
 		}

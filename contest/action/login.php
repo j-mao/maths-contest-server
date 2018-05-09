@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($has_alert) {
 	$alert_subject = "Failed to log in.";
+	$alert_body = "If you have forgotten your login, email me or message me.";
 	$alert_class = "danger";
 }
 

@@ -1,5 +1,7 @@
 <?php
 
+$LEADERBOARD_SIZE = 3;
+
 require_once __DIR__."/../../backend/session.php";
 require_login();
 require_once __DIR__."/../../backend/conn.php";
@@ -7,7 +9,7 @@ require_once __DIR__."/../../backend/conn.php";
 require_once __DIR__."/../../backend/scores.php";
 
 $conn = get_conn();
-$leaderboard = [];
+$scoreboard = [];
 $scores = [];
 
 if (is_null($conn)) {
@@ -26,23 +28,40 @@ if (is_null($conn)) {
 	$conn->close();
 }
 
-$has_self = false;
+$my_result = null;
 foreach ($scores as $username => $score) {
-	$leaderboard[] = array("username" => $username, "score" => $score, "me" => ($username === $_SESSION["username"]));
+	$scoreboard[] = array("username" => $username, "score" => $score, "me" => ($username === $_SESSION["username"]));
 	if ($username === $_SESSION["username"]) {
-		$has_self = true;
+		$my_result = end($scoreboard);
 	}
 }
 
-if (!$has_self) {
-	$leaderboard[] = array("username" => $_SESSION["username"], "score" => 0, "me" => true);
+if ($my_result === null) {
+	$scoreboard[] = array("username" => $_SESSION["username"], "score" => 0, "me" => true);
+	$my_result = end($scoreboard);
 }
 
 function cmp($a, $b) {
 	return $b["score"]-$a["score"];
 }
 
-usort($leaderboard, "cmp");
+usort($scoreboard, "cmp");
+
+$has_self = false;
+$leaderboard = [];
+foreach ($scoreboard as $entry) {
+	if ($LEADERBOARD_SIZE == 0) {
+		break;
+	}
+	$LEADERBOARD_SIZE -= 1;
+	$leaderboard[] = $entry;
+	if ($entry["me"]) {
+		$has_self = true;
+	}
+}
+if (!$has_self) {
+	$leaderboard[] = $my_result;
+}
 
 echo json_encode($leaderboard);
 
