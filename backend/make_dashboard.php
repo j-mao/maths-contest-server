@@ -89,7 +89,7 @@ function make_dashboard($user_id) {
 		echo ")";
 		if ($i < $solves_arr_len) {
 			if ($solves[$i] > 0 && $show_solved_by) {
-				echo "<span class=\"badge\">solved by " . $solves[$i] . "</span>\n";
+				//echo "<span class=\"badge\">solved by " . $solves[$i] . "</span>\n";
 			}
 		}
 		echo "</a>\n";
