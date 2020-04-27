@@ -15,3 +15,6 @@ Many tables are required: you can run `init_database.sql` to set them up.
 
 ## Contributing
 Use git or something
+
+## Acknowledgement
+Web design is based on [CMS](https://github.com/cms-dev/cms) and done using [Bootstrap](https://github.com/twbs/bootstrap).
